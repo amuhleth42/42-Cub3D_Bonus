@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/14 21:10:40 by amuhleth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -6,14 +16,17 @@
 # include "mlx.h"
 # include "libft.h"
 # include <math.h>
+# include <pthread.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 800
 
 # define PI 3.1415926535
 
-# define VIEW_FIELD	(PI / 3)
-# define COLUMN_SIZE 2
+# define VIEW_FIELD	(2 * PI / 360 * 60)
+# define COLUMN_SIZE 4
+
+# define NB_THREAD 12
 
 enum
 {
@@ -90,20 +103,33 @@ typedef struct s_keys
 	int	right;
 }		t_keys;
 
+typedef struct s_data	t_data;
+
+typedef struct s_thread
+{
+	int			nb;
+	pthread_t	tid;
+	t_data		*backup;
+	int			nb_column;
+	int			slice_size;
+	float		slice_a;
+}				t_thread;
+
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	t_map	map;
-	t_img	mini;
-	t_img	fp;
-	t_cam	cam;
-	t_keys	keys;
-	t_img	n;
-	t_img	s;
-	t_img	e;
-	t_img	w;
-}			t_data;
+	void		*mlx;
+	void		*win;
+	t_thread	*thread;
+	t_map		map;
+	t_img		mini;
+	t_img		fp;
+	t_cam		cam;
+	t_keys		keys;
+	t_img		n;
+	t_img		s;
+	t_img		e;
+	t_img		w;
+}				t_data;
 
 //	utils.c
 
@@ -116,6 +142,7 @@ float	dist(float ax, float ay, float bx, float by);
 void	draw_cam(t_data *a);
 void	draw_map(t_data *a);
 void	draw_tile(t_data *a, int x, int y, int color);
+void	draw_point(t_data *a, int x, int y);
 
 //	render_column.c
 

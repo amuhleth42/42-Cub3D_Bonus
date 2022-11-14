@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 15:45:18 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:22:54 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,29 @@ void	cast_ray(t_data *a, float ra, int i)
 	}
 }
 
+void	*thread_routine(void *arg)
+{
+	t_data		*a;
+	t_thread	*t;
+	float	start_angle;
+	int		i;
+
+	t = arg;
+	a = t->backup;
+	start_angle = add_rad(a->cam.a, -(VIEW_FIELD / 2));
+	t->nb_column = WIN_WIDTH / COLUMN_SIZE;
+	t->slice_size = t->nb_column / NB_THREAD;
+	t->slice_a = VIEW_FIELD / NB_THREAD;
+	start_angle = add_rad(start_angle, t->slice_a * t->nb);
+	i = 0;
+	while (i < t->slice_size)
+	{
+		cast_ray(a, add_rad(start_angle, i * VIEW_FIELD / t->nb_column), t->slice_size * t->nb + i);
+		i++;
+	}
+	return (NULL);
+}
+
 void	raycasting(t_data *a)
 {
 	float	start_angle;
@@ -49,9 +72,17 @@ void	raycasting(t_data *a)
 	nb_column = WIN_WIDTH / COLUMN_SIZE;
 	start_angle = add_rad(a->cam.a, -(VIEW_FIELD / 2));
 	i = 0;
-	while (i < nb_column)
+	while (i < NB_THREAD)
 	{
-		cast_ray(a, add_rad(start_angle, i * VIEW_FIELD / nb_column), i);
+		a->thread[i].backup = a;
+		a->thread[i].nb = i;
+		pthread_create(&a->thread[i].tid, NULL, &thread_routine, a->thread + i);
+		i++;
+	}
+	i = 0;
+	while (i < NB_THREAD)
+	{
+		pthread_join(a->thread[i].tid, NULL);
 		i++;
 	}
 }

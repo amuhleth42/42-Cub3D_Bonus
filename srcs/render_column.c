@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 16:03:19 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:38:09 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ float	fix_fisheye(float dist, int i)
 void	set_column_data(t_img *img, t_ray *r, int i)
 {
 	r->dist = fix_fisheye(r->dist, i);
-	r->size = 64 * WIN_HEIGHT / r->dist;
+	r->size = 64 * WIN_WIDTH / r->dist;
 	r->step = img->y / r->size;
 	r->tyoff = 0;
 	if (r->size > WIN_HEIGHT)

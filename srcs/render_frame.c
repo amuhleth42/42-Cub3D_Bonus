@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 16:04:16 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:01:07 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	clear_img(t_img *img)
 
 void	render_frame(t_data *a)
 {
-	clear_img(&a->mini);
-	clear_img(&a->fp);
+	//clear_img(&a->mini);
+	//clear_img(&a->fp);
 	draw_map(a);
 	draw_cam(a);
 	raycasting(a);
@@ -42,11 +42,11 @@ int	loop_render(t_data *a)
 {
 	if (a->keys.w)
 		move(a, 1);
-	else if (a->keys.s)
+	if (a->keys.s)
 		move(a, -1);
 	if (a->keys.a)
 		rl_move(a, -1);
-	else if (a->keys.d)
+	if (a->keys.d)
 		rl_move(a, 1);
 	if (a->keys.left)
 		rotate(a, -0.02);

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 15:26:34 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:11:19 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	move(t_data *a, int dir)
 	float	new_x;
 	float	new_y;
 
-	new_x = a->cam.x + a->cam.dx * dir * 1.5;
-	new_y = a->cam.y + a->cam.dy * dir * 1.5;
+	new_x = a->cam.x + a->cam.dx * dir * 5;
+	new_y = a->cam.y + a->cam.dy * dir * 5;
 	if (check_move(a, new_x, a->cam.y))
 		a->cam.x = new_x;
 	if (check_move(a, a->cam.x, new_y))
@@ -59,8 +59,8 @@ void	rl_move(t_data *a, int dir)
 
 	dx = cos(add_rad(a->cam.a, PI / 2));
 	dy = sin(add_rad(a->cam.a, PI / 2));
-	new_x = a->cam.x + dx * dir * 1.5;
-	new_y = a->cam.y + dy * dir * 1.5;
+	new_x = a->cam.x + dx * dir * 3;
+	new_y = a->cam.y + dy * dir * 3;
 	if (check_move(a, new_x, a->cam.y))
 		a->cam.x = new_x;
 	if (check_move(a, a->cam.x, new_y))
@@ -70,6 +70,7 @@ void	rl_move(t_data *a, int dir)
 void	rotate(t_data *a, double da)
 {
 	a->cam.a = add_rad(a->cam.a, da);
+	//printf("a->cam.a: %f\n", a->cam.a);
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 }

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 18:12:54 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 21:15:41 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int	hit_wall(t_data *a, t_ray *r)
 	y = ((int)r->y) >> 6;
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y
 		&& a->map.map[y][x] == '1')
+	{
+		draw_point(a, (int)r->x, (int)r->y);
 		return (1);
+	}
 	return (0);
 }
 

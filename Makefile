@@ -23,7 +23,7 @@ OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 all :		$(NAME)
 
-$(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c  cub3d.h
 	gcc $(FLAGS) $(INCL) -c $< -o $@
 
 $(NAME) :	libft.a libmlx.a $(OBJS)

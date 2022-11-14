@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 18:16:03 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/14 19:16:50 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,14 @@ void	init_game(t_data *a)
 	render_frame(a);
 }
 
+void	init_threads(t_data *a)
+{
+	a->thread = ft_calloc(NB_THREAD + 1, sizeof(t_thread));
+	if (!a->thread)
+		exit_all(a);
+	ft_printf("thread init done\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	a;
@@ -139,6 +147,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&a, sizeof(a));
 	init_map(&a);
 	init_graphics(&a);
+	init_threads(&a);
 	init_textures(&a);
 	init_game(&a);
 	init_mlx_hooks(&a);
