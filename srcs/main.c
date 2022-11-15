@@ -107,10 +107,10 @@ void	init_tile(t_img *img, char *file, void *mlx)
 
 void	init_textures(t_data *a)
 {
-	init_tile(&a->n, "assets/wallgrass32.xpm", a->mlx);
-	init_tile(&a->s, "assets/wall_block.xpm", a->mlx);
-	init_tile(&a->e, "assets/grass32.xpm", a->mlx);
-	init_tile(&a->w, "assets/flower32.xpm", a->mlx);
+	init_tile(&a->n, "assets/wolf3d/bluestone.XPM", a->mlx);
+	init_tile(&a->s, "assets/wolf3d/colorstone.XPM", a->mlx);
+	init_tile(&a->e, "assets/wolf3d/purplestone.XPM", a->mlx);
+	init_tile(&a->w, "assets/wolf3d/redbrick.XPM", a->mlx);
 	/*if (!a->map.n.img)
 	{
 		ft_printf("Error: texture failed\n");
