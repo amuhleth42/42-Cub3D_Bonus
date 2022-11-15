@@ -88,12 +88,16 @@ void	init_map(t_data *a)
 	a->map.y = 41;
 	a->map.floor = 0xAAAAAA;
 	a->map.ceiling = 0x666666;
+	a->map.border = 1;
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
 	else if (a->map.x <= 20 && a->map.y <= 32)
 		a->map.size = 10;
 	else if (a->map.x <= 430 && a->map.y <= 64)
+	{
 		a->map.size = 5;
+		a->map.border = 0;
+	}
 }
 
 void	init_tile(t_img *img, char *file, void *mlx)
@@ -106,7 +110,7 @@ void	init_textures(t_data *a)
 	init_tile(&a->n, "assets/wallgrass32.xpm", a->mlx);
 	init_tile(&a->s, "assets/wall_block.xpm", a->mlx);
 	init_tile(&a->e, "assets/grass32.xpm", a->mlx);
-	init_tile(&a->w, "assets/star_l_32.xpm", a->mlx);
+	init_tile(&a->w, "assets/flower32.xpm", a->mlx);
 	/*if (!a->map.n.img)
 	{
 		ft_printf("Error: texture failed\n");

@@ -65,12 +65,8 @@ void	*thread_routine(void *arg)
 
 void	raycasting(t_data *a)
 {
-	float	start_angle;
 	int		i;
-	int		nb_column;
 
-	nb_column = WIN_WIDTH / COLUMN_SIZE;
-	start_angle = add_rad(a->cam.a, -(VIEW_FIELD / 2));
 	i = 0;
 	while (i < NB_THREAD)
 	{

@@ -16,7 +16,7 @@ void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 {
 	if (ra > PI)
 	{
-		r->y = (((int)a->cam.y >> 6) << 6) - 0.0001;
+		r->y = (((int)a->cam.y >> 6) << 6) - 0.01;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
 		r->yoff = -64;
 		r->xoff = -r->yoff * (-1 / tan(ra));
@@ -39,7 +39,7 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 {
 	if (PI / 2 < ra && ra < 3 * PI / 2)
 	{
-		r->x = (((int)a->cam.x >> 6) << 6) - 0.0001;
+		r->x = (((int)a->cam.x >> 6) << 6) - 0.01;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
 		r->xoff = -64;
 		r->yoff = -r->xoff * -tan(ra);
@@ -80,7 +80,7 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 
 	set_horizontal_start(a, r, ra);
 	i = 0;
-	while (i < 20)
+	while (i < a->map.y)
 	{
 		if (hit_wall(a, r))
 			break ;
@@ -99,7 +99,7 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 
 	set_vertical_start(a, r, ra);
 	i = 0;
-	while (i < 20)
+	while (i < a->map.x)
 	{
 		if (hit_wall(a, r))
 			break ;

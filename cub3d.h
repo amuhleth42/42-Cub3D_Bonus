@@ -23,8 +23,8 @@
 
 # define PI 3.1415926535
 
-# define VIEW_FIELD	(2 * PI / 360 * 60)
-# define COLUMN_SIZE 4
+# define VIEW_FIELD	(PI / 3)
+# define COLUMN_SIZE 2
 
 # define NB_THREAD 12
 
@@ -89,6 +89,7 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		size;
+	int		border;
 	int		floor;
 	int		ceiling;
 }			t_map;

@@ -26,10 +26,10 @@ void	draw_tile(t_data *a, int x, int y, int color)
 		i++;
 	}
 	i = 1;
-	while (i < a->map.size - 1)
+	while (i < a->map.size - a->map.border)
 	{
-		j = 1;
-		while (j++ < a->map.size - 1)
+		j = a->map.border;
+		while (j++ < a->map.size - a->map.border)
 			put_pixel(&a->mini, x + j - 1, y + i, color);
 		i++;
 	}
@@ -63,6 +63,9 @@ void	draw_map(t_data *a)
 void	draw_point(t_data *a, int x, int y)
 {
 	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size + 1, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size + 1, 0xFF0000);
 }
 
 void	draw_cam(t_data *a)
