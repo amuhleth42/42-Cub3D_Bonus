@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 19:16:50 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:39:32 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	ft_bzero(&a, sizeof(a));
+	gettimeofday(&a.start, NULL);
+	gettimeofday(&a.frame, NULL);
 	init_map(&a);
 	init_graphics(&a);
 	init_threads(&a);

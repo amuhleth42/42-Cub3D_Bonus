@@ -6,11 +6,32 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 21:01:07 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:46:12 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	get_timestamp(t_data *a)
+{
+	double			sec;
+	double			usec;
+
+	gettimeofday(&a->frame, NULL);
+	sec = a->frame.tv_sec - a->start.tv_sec;
+	usec = a->frame.tv_usec - a->start.tv_usec;
+	return (sec * 1000 + usec / 1000);
+}
+
+int	get_time_diff(struct timeval *last, struct timeval *now)
+{
+	double	sec;
+	double	usec;
+
+	sec = now->tv_sec - last->tv_sec;
+	usec = now->tv_usec - last->tv_usec;
+	return (sec * 1000 + usec / 1000);
+}
 
 void	clear_img(t_img *img)
 {
@@ -29,13 +50,20 @@ void	clear_img(t_img *img)
 
 void	render_frame(t_data *a)
 {
-	//clear_img(&a->mini);
-	//clear_img(&a->fp);
+	//int	diff;
 	draw_map(a);
 	draw_cam(a);
 	raycasting(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
 	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
+	a->last_frame = a->frame;
+	while (get_time_diff(&a->last_frame, &a->frame) < 15)
+	{
+		usleep(500);
+		get_timestamp(a);
+	}
+	ft_printf("Time: %d, ", get_timestamp(a));
+	ft_printf("diff: %d\n", get_time_diff(&a->last_frame, &a->frame));
 }
 
 int	loop_render(t_data *a)
@@ -49,9 +77,9 @@ int	loop_render(t_data *a)
 	if (a->keys.d)
 		rl_move(a, 1);
 	if (a->keys.left)
-		rotate(a, -0.02);
+		rotate(a, -0.04);
 	if (a->keys.right)
-		rotate(a, 0.02);
+		rotate(a, 0.04);
 	render_frame(a);
 	return (0);
 }

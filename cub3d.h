@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 21:10:40 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:27:58 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include <math.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 800
@@ -130,6 +131,9 @@ typedef struct s_data
 	t_img		s;
 	t_img		e;
 	t_img		w;
+	struct timeval	start;
+	struct timeval	last_frame;
+	struct timeval	frame;
 }				t_data;
 
 //	utils.c
