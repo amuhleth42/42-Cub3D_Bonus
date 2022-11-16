@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:57:21 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:48:37 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	loop_render(t_data *a)
 		rotate(a, a->mouse.dx * 0.004);
 		a->mouse.dx = 0;
 	}
+	mouse_move(a);
 	render_frame(a);
 	return (0);
 }

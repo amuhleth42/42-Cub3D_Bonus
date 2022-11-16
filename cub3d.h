@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:55:30 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:49:51 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int		key_up(int key, t_data *a);
 
 //	mouse.c
 
-int		mouse_move(int x, int y, t_data *a);
+int		mouse_move(t_data *a);
 
 //	move.c
 
