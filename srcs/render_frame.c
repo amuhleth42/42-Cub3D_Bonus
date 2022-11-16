@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 14:46:12 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:20:39 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,14 @@ void	clear_img(t_img *img)
 void	render_frame(t_data *a)
 {
 	//int	diff;
-	draw_map(a);
-	draw_cam(a);
 	raycasting(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
-	mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
+	if (a->keys.m)
+	{
+		draw_map(a);
+		mlx_put_image_to_window(a->mlx, a->win, a->mini.img, 50, 50);
+	}
+	draw_ui(a);
 	a->last_frame = a->frame;
 	while (get_time_diff(&a->last_frame, &a->frame) < 15)
 	{
@@ -63,7 +66,7 @@ void	render_frame(t_data *a)
 		get_timestamp(a);
 	}
 	ft_printf("Time: %d, ", get_timestamp(a));
-	ft_printf("diff: %d\n", get_time_diff(&a->last_frame, &a->frame));
+	ft_printf("fps: %d\n", 1000 / get_time_diff(&a->last_frame, &a->frame));
 }
 
 int	loop_render(t_data *a)

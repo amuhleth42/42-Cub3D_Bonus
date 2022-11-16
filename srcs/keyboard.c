@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:18 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 15:16:07 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:08:58 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	key_down(int key, t_data *a)
 {
+	//ft_printf("key:%d\n", key);
 	if (key == 13)
 		a->keys.w = 1;
 	if (key == 1)
@@ -27,6 +28,10 @@ int	key_down(int key, t_data *a)
 		a->keys.left = 1;
 	if (key == 124)
 		a->keys.right = 1;
+	if (key == 46 && a->keys.m == 0)
+		a->keys.m = 1;
+	else if (key == 46 && a->keys.m == 1)
+		a->keys.m = 0;
 	return (0);
 }
 

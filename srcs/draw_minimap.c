@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:37:56 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 21:16:12 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:05:46 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,39 +35,6 @@ void	draw_tile(t_data *a, int x, int y, int color)
 	}
 }
 
-void	draw_map(t_data *a)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (a->map.map[i] != NULL)
-	{
-		j = 0;
-		while (a->map.map[i][j] != '\0')
-		{
-			if (a->map.map[i][j] == '1')
-			{
-				draw_tile(a, j * a->map.size, i * a->map.size, 0x22FFFFFF);
-			}
-			if (a->map.map[i][j] == '0')
-			{
-				draw_tile(a, j * a->map.size, i * a->map.size, 0x99000000);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_point(t_data *a, int x, int y)
-{
-	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size + 1, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size + 1, 0xFF0000);
-}
-
 void	draw_cam(t_data *a)
 {
 	int	i;
@@ -94,4 +61,38 @@ void	draw_cam(t_data *a)
 		}
 		i++;
 	}
+}
+
+void	draw_map(t_data *a)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (a->map.map[i] != NULL)
+	{
+		j = 0;
+		while (a->map.map[i][j] != '\0')
+		{
+			if (a->map.map[i][j] == '1')
+			{
+				draw_tile(a, j * a->map.size, i * a->map.size, 0x22FFFFFF);
+			}
+			if (a->map.map[i][j] == '0')
+			{
+				draw_tile(a, j * a->map.size, i * a->map.size, 0x99000000);
+			}
+			j++;
+		}
+		i++;
+	}
+	draw_cam(a);
+}
+
+void	draw_point(t_data *a, int x, int y)
+{
+	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size + 1, 0xFF0000);
+	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size + 1, 0xFF0000);
 }

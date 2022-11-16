@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 14:46:30 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:27:50 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	move(t_data *a, int dir)
 	float	new_x;
 	float	new_y;
 
-	new_x = a->cam.x + a->cam.dx * dir * 7;
-	new_y = a->cam.y + a->cam.dy * dir * 7;
+	new_x = a->cam.x + a->cam.dx * dir * 10;
+	new_y = a->cam.y + a->cam.dy * dir * 10;
 	if (check_move(a, new_x, a->cam.y))
 		a->cam.x = new_x;
 	if (check_move(a, a->cam.x, new_y))

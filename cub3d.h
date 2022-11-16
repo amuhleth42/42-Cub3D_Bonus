@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 14:27:58 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:23:38 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PI 3.1415926535
 
 # define VIEW_FIELD	(PI / 3)
-# define COLUMN_SIZE 2
+# define COLUMN_SIZE 1
 
 # define NB_THREAD 12
 
@@ -103,6 +103,7 @@ typedef struct s_keys
 	int	d;
 	int	left;
 	int	right;
+	int	m;
 }		t_keys;
 
 typedef struct s_data	t_data;
@@ -124,6 +125,7 @@ typedef struct s_data
 	t_thread	*thread;
 	t_map		map;
 	t_img		mini;
+	t_img		ui;
 	t_img		fp;
 	t_cam		cam;
 	t_keys		keys;
@@ -194,5 +196,9 @@ void	vertical_check(t_data *a, t_ray *r, float ra);
 int		loop_render(t_data *a);
 void	render_frame(t_data *a);
 void	clear_img(t_img *i);
+
+//	draw_ui.c
+
+void	draw_ui(t_data *a);
 
 #endif

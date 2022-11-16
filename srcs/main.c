@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 14:39:32 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:20:52 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	init_graphics(t_data *a)
 	a->fp.img = mlx_new_image(a->mlx, a->fp.x, a->fp.y);
 	a->fp.addr = mlx_get_data_addr(a->fp.img, &a->fp.bpp, &a->fp.ll,
 			&a->fp.endian);
+	a->ui.x = WIN_WIDTH;
+	a->ui.y = WIN_HEIGHT;
+	a->ui.img = mlx_new_image(a->mlx, a->ui.x, a->ui.y);
+	a->ui.addr = mlx_get_data_addr(a->ui.img, &a->ui.bpp, &a->ui.ll,
+			&a->ui.endian);
 	a->mini.x = a->map.x * a->map.size;
 	a->mini.y = a->map.y * a->map.size;
 	a->mini.img = mlx_new_image(a->mlx, a->mini.x, a->mini.y);
