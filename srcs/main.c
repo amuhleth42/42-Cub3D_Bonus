@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 19:49:36 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 20:27:01 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ void	init_tile(t_img *img, char *file, void *mlx)
 
 void	init_textures(t_data *a)
 {
-	init_tile(&a->n, "assets/wolf3d/bluestone.XPM", a->mlx);
+	init_tile(&a->n, "assets/wolf3d/colorstone.XPM", a->mlx);
 	init_tile(&a->s, "assets/wolf3d/colorstone.XPM", a->mlx);
-	init_tile(&a->e, "assets/wolf3d/purplestone.XPM", a->mlx);
-	init_tile(&a->w, "assets/wolf3d/redbrick.XPM", a->mlx);
+	init_tile(&a->e, "assets/wolf3d/colorstone.XPM", a->mlx);
+	init_tile(&a->w, "assets/wolf3d/colorstone.XPM", a->mlx);
 	/*if (!a->map.n.img)
 	{
 		ft_printf("Error: texture failed\n");

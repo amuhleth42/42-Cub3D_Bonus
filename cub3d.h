@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 19:49:51 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 20:42:20 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define PI 3.1415926535
 
-# define VIEW_FIELD	(PI / 3)
+# define VIEW_FIELD	(PI / 4)
 # define COLUMN_SIZE 1
 
 # define NB_THREAD 12
