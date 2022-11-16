@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:20:39 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:57:21 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ void	render_frame(t_data *a)
 	}
 	draw_ui(a);
 	a->last_frame = a->frame;
-	while (get_time_diff(&a->last_frame, &a->frame) < 15)
+	a->diff = get_time_diff(&a->last_frame, &a->frame);
+	while (a->diff < 15)
 	{
 		usleep(500);
 		get_timestamp(a);
+		a->diff = get_time_diff(&a->last_frame, &a->frame);
 	}
-	ft_printf("Time: %d, ", get_timestamp(a));
-	ft_printf("fps: %d\n", 1000 / get_time_diff(&a->last_frame, &a->frame));
+	//ft_printf("Time: %d, ", get_timestamp(a));
+	//ft_printf("fps: %d\n", 1000 / get_time_diff(&a->last_frame, &a->frame));
 }
 
 int	loop_render(t_data *a)
@@ -83,6 +85,11 @@ int	loop_render(t_data *a)
 		rotate(a, -0.04);
 	if (a->keys.right)
 		rotate(a, 0.04);
+	if (a->mouse.dx)
+	{
+		rotate(a, a->mouse.dx * 0.004);
+		a->mouse.dx = 0;
+	}
 	render_frame(a);
 	return (0);
 }

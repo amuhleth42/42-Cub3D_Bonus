@@ -2,6 +2,7 @@
 
 fix theads width problem
 fix wall orientation
-fps counter
 sky?
 gun and pointer
+mouse rotation
+mouse up and down rotation

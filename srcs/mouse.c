@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_ui.c                                          :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 15:44:46 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:35:52 by amuhleth         ###   ########.fr       */
+/*   Created: 2022/11/16 16:45:32 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/11/16 16:55:47 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_ui(t_data *a)
+int	mouse_move(int x, int y, t_data *a)
 {
-	char	*fps;
-
-	fps = ft_itoa(1000 / a->diff);
-	mlx_string_put(a->mlx, a->win, WIN_WIDTH - 150, 50, 0xFFFFFF, "FPS: ");
-	mlx_string_put(a->mlx, a->win, WIN_WIDTH - 100, 50, 0xFFFFFF, fps);
-	if (fps)
-		free(fps);
+	a->mouse.lastx = a->mouse.x;
+	a->mouse.lasty = a->mouse.y;
+	a->mouse.x = x;
+	a->mouse.y = y;
+	a->mouse.dx = a->mouse.x - a->mouse.lastx;
+	a->mouse.dy = a->mouse.y - a->mouse.lasty;
+	//if (dx)
+	//	rotate(a, dx * 0.004);
+	return (0);
 }

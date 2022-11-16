@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 15:20:52 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:44:24 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_mlx_hooks(t_data *a)
 {
 	mlx_hook(a->win, ON_KEYDOWN, 0, &key_down, a);
 	mlx_hook(a->win, ON_KEYUP, 0, &key_up, a);
+	mlx_hook(a->win, ON_MOUSEMOVE, 0, &mouse_move, a);
 	mlx_hook(a->win, ON_DESTROY, 0, &red_cross, a);
 	mlx_loop_hook(a->mlx, &loop_render, a);
 	mlx_loop(a->mlx);
@@ -135,6 +136,7 @@ void	init_game(t_data *a)
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 4;
+	a->diff = 16;
 	a->cam.color = 0xFFFF00;
 	render_frame(a);
 }

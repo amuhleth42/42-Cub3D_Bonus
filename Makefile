@@ -13,6 +13,7 @@ SRCS		=	main.c				\
 				render_column.c		\
 				exit.c				\
 				keyboard.c			\
+				mouse.c				\
 				move.c				\
 				ray.c				\
 				ray2.c				\

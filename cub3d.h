@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:23:38 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:55:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,18 @@ typedef struct s_keys
 	int	m;
 }		t_keys;
 
+typedef struct s_mouse
+{
+	int	left;
+	int	right;
+	int	x;
+	int	y;
+	int	lastx;
+	int	lasty;
+	int	dx;
+	int	dy;
+}		t_mouse;
+
 typedef struct s_data	t_data;
 
 typedef struct s_thread
@@ -136,6 +148,8 @@ typedef struct s_data
 	struct timeval	start;
 	struct timeval	last_frame;
 	struct timeval	frame;
+	int			diff;
+	t_mouse		mouse;
 }				t_data;
 
 //	utils.c
@@ -170,6 +184,11 @@ int		red_cross(t_data *a);
 
 int		key_down(int key, t_data *a);
 int		key_up(int key, t_data *a);
+
+
+//	mouse.c
+
+int		mouse_move(int x, int y, t_data *a);
 
 //	move.c
 
