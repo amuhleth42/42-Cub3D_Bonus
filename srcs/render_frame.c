@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 19:48:37 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:47:08 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	render_frame(t_data *a)
 	draw_ui(a);
 	a->last_frame = a->frame;
 	a->diff = get_time_diff(&a->last_frame, &a->frame);
-	while (a->diff < 15)
+	while (a->diff < 16)
 	{
 		usleep(500);
 		get_timestamp(a);

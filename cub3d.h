@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 20:42:20 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:29:43 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_ray
 	float	ty;
 	float	tyoff;
 	float	value;
+	int		i;
 }			t_ray;
 
 typedef struct s_map
@@ -167,7 +168,7 @@ void	draw_point(t_data *a, int x, int y);
 
 //	render_column.c
 
-void	render_column(t_data *a, t_ray *r, int i, t_img *img);
+void	render_column(t_data *a, t_ray *r, t_img *img, int invert);
 
 //	draw_column.c
 
