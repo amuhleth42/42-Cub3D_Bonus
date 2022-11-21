@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 14:29:43 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:37:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define VIEW_FIELD	(PI / 4)
 # define COLUMN_SIZE 1
 
-# define NB_THREAD 12
+# define NB_THREAD 8
 
 enum
 {
@@ -128,6 +128,7 @@ typedef struct s_thread
 	t_data		*backup;
 	int			nb_column;
 	int			slice_size;
+	int			this_slice;
 	float		slice_a;
 }				t_thread;
 

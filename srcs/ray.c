@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 14:28:51 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:33:18 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,13 @@ void	*thread_routine(void *arg)
 	start_angle = add_rad(a->cam.a, -(VIEW_FIELD / 2));
 	t->nb_column = WIN_WIDTH / COLUMN_SIZE;
 	t->slice_size = t->nb_column / NB_THREAD;
+	t->this_slice = t->slice_size;
+	if (t->nb == NB_THREAD - 1)
+		t->this_slice += t->nb_column % NB_THREAD;
 	t->slice_a = VIEW_FIELD / NB_THREAD;
 	start_angle = add_rad(start_angle, t->slice_a * t->nb);
 	i = 0;
-	while (i < t->slice_size)
+	while (i < t->this_slice)
 	{
 		cast_ray(a, add_rad(start_angle, i * VIEW_FIELD / t->nb_column), t->slice_size * t->nb + i);
 		i++;
