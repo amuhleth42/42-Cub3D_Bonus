@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 23:33:18 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:40:10 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	*thread_routine(void *arg)
 {
 	t_data		*a;
 	t_thread	*t;
-	float	start_angle;
-	int		i;
+	float		start_angle;
+	int			i;
 
 	t = arg;
 	a = t->backup;
@@ -61,7 +61,8 @@ void	*thread_routine(void *arg)
 	i = 0;
 	while (i < t->this_slice)
 	{
-		cast_ray(a, add_rad(start_angle, i * VIEW_FIELD / t->nb_column), t->slice_size * t->nb + i);
+		cast_ray(a, add_rad(start_angle, i * VIEW_FIELD / t->nb_column),
+			t->slice_size * t->nb + i);
 		i++;
 	}
 	return (NULL);

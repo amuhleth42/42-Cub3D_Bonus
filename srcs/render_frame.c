@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:53 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/18 17:47:08 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:40:44 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	clear_img(t_img *img)
 
 void	render_frame(t_data *a)
 {
-	//int	diff;
 	raycasting(a);
 	mlx_put_image_to_window(a->mlx, a->win, a->fp.img, 0, 0);
 	if (a->keys.m)
@@ -67,8 +66,6 @@ void	render_frame(t_data *a)
 		get_timestamp(a);
 		a->diff = get_time_diff(&a->last_frame, &a->frame);
 	}
-	//ft_printf("Time: %d, ", get_timestamp(a));
-	//ft_printf("fps: %d\n", 1000 / get_time_diff(&a->last_frame, &a->frame));
 }
 
 int	loop_render(t_data *a)

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 20:27:01 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/21 23:48:55 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ void	init_game(t_data *a)
 	a->cam.size = 4;
 	a->diff = 16;
 	a->cam.color = 0xFFFF00;
+	a->mouse.x = WIN_WIDTH / 2;
+	a->mouse.y = WIN_HEIGHT / 2;
 	render_frame(a);
 }
 
