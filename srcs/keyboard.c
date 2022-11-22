@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:18 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:08:58 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:42:57 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	key_down(int key, t_data *a)
 		a->keys.m = 1;
 	else if (key == 46 && a->keys.m == 1)
 		a->keys.m = 0;
+	if (key == 49)
+		open_door(a);
 	return (0);
 }
 

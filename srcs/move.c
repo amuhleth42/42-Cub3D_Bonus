@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:25 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 23:49:39 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 00:24:02 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_wall(t_data *a, float x, float y)
 	mx = ((int)x) >> 6;
 	my = ((int)y) >> 6;
 	if (0 <= mx && mx < a->map.x && 0 <= my && my < a->map.y
-		&& a->map.map[my][mx] == '0')
+		&& (a->map.map[my][mx] == '0' || a->map.map[my][mx] == 'O'))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/14 21:15:41 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:19:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 	}
 }
 
+int	hit_door(t_data *a, t_ray *r)
+{
+	int	x;
+	int	y;
+
+	x = ((int)r->x) >> 6;
+	y = ((int)r->y) >> 6;
+	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y
+		&& a->map.map[y][x] == 'C')
+	{
+		r->door = 1;
+		return (1);
+	}
+	return (0);
+}
+
 int	hit_wall(t_data *a, t_ray *r)
 {
 	int	x;
@@ -67,10 +83,7 @@ int	hit_wall(t_data *a, t_ray *r)
 	y = ((int)r->y) >> 6;
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y
 		&& a->map.map[y][x] == '1')
-	{
-		draw_point(a, (int)r->x, (int)r->y);
 		return (1);
-	}
 	return (0);
 }
 
@@ -78,36 +91,44 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 {
 	int	i;
 
+	r->ra = ra;
 	set_horizontal_start(a, r, ra);
 	i = 0;
 	while (i < a->map.y)
 	{
+		if (hit_door(a, r))
+			break ;
 		if (hit_wall(a, r))
 			break ;
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	r->hx = r->x;
-	r->hy = r->y;
-	r->hdist = dist(a->cam.x, a->cam.y, r->hx, r->hy);
+	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
+	if (r->door)
+		r->dist += 32;
+	r->value = r->x;
 }
 
 void	vertical_check(t_data *a, t_ray *r, float ra)
 {
 	int	i;
 
+	r->ra = ra;
 	set_vertical_start(a, r, ra);
 	i = 0;
 	while (i < a->map.x)
 	{
+		if (hit_door(a, r))
+			break ;
 		if (hit_wall(a, r))
 			break ;
 		r->x += r->xoff;
 		r->y += r->yoff;
 		i++;
 	}
-	r->vx = r->x;
-	r->vy = r->y;
-	r->vdist = dist(a->cam.x, a->cam.y, r->vx, r->vy);
+	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
+	if (r->door)
+		r->dist += 32;
+	r->value = r->y;
 }

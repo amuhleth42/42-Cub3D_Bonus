@@ -20,6 +20,7 @@ SRCS		=	main.c				\
 				render_frame.c		\
 				utils.c				\
 				draw_ui.c			\
+				door.c				\
 
 OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

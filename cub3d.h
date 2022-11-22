@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/21 23:37:48 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:40:07 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define VIEW_FIELD	(PI / 4)
 # define COLUMN_SIZE 1
 
-# define NB_THREAD 8
+# define NB_THREAD 1
 
 enum
 {
@@ -67,12 +67,6 @@ typedef struct s_ray
 	float	y;
 	float	xoff;
 	float	yoff;
-	float	hx;
-	float	hy;
-	float	vx;
-	float	vy;
-	float	hdist;
-	float	vdist;
 	float	dist;
 	char	side;
 	int		offset;
@@ -83,6 +77,9 @@ typedef struct s_ray
 	float	tyoff;
 	float	value;
 	int		i;
+	int		door;
+	int		h;
+	float	ra;
 }			t_ray;
 
 typedef struct s_map
@@ -105,6 +102,7 @@ typedef struct s_keys
 	int	left;
 	int	right;
 	int	m;
+	int	sp;
 }		t_keys;
 
 typedef struct s_mouse
@@ -147,6 +145,7 @@ typedef struct s_data
 	t_img		s;
 	t_img		e;
 	t_img		w;
+	t_img		d;
 	struct timeval	start;
 	struct timeval	last_frame;
 	struct timeval	frame;
@@ -217,6 +216,10 @@ void	vertical_check(t_data *a, t_ray *r, float ra);
 int		loop_render(t_data *a);
 void	render_frame(t_data *a);
 void	clear_img(t_img *i);
+
+//	door.c
+
+void	open_door(t_data *a);
 
 //	draw_ui.c
 
