@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 15:28:57 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:46:10 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	hit_door(t_data *a, t_ray *r)
 		&& a->map.map[y][x] == 'C')
 	{
 		r->door = 1;
+		r->x += r->xoff / 2.0;
+		r->y += r->yoff / 2.0;
 		return (1);
 	}
 	return (0);
@@ -104,9 +106,10 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 		r->y += r->yoff;
 		i++;
 	}
+	//printf("x:%f, y:%f\n", r->x, r->y);
 	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
-	if (r->door)
-		r->dist += 32;
+	//if (r->door)
+	//	r->dist += 32;
 	r->value = r->x;
 }
 
@@ -128,7 +131,7 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 		i++;
 	}
 	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
-	if (r->door)
-		r->dist += 32;
+	//if (r->door)
+		//r->dist += 32;
 	r->value = r->y;
 }

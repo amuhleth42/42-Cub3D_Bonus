@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:17:58 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/21 22:56:55 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:08:59 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	fill_map(char **lines, t_map *map, t_cam *cam)
 		while (lines[map->y][++map->x])
 		{
 			if (lines[map->y][map->x] == '0' || lines[map->y][map->x] == '1'
-				|| lines[map->y][map->x] == '2')
+				|| lines[map->y][map->x] == 'C')
 				map->map[map->y][map->x] = lines[map->y][map->x];
 			else if (ft_isalpha(lines[map->y][map->x]))
 			{

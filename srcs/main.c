@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 15:10:53 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:40:57 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void	init_textures(t_data *a)
 	init_tile(&a->s, a->sprite.so, a->mlx);
 	init_tile(&a->e, a->sprite.ea, a->mlx);
 	init_tile(&a->w, a->sprite.we, a->mlx);
-	//init_tile(&a->d, "assets/wolf3d/purplestone.XPM", a->mlx);
+	init_tile(&a->d, "assets/wolf3d/eagle.XPM", a->mlx);
 	if (!a->n.img || !a->s.img || !a->e.img || !a->w.img)
 		ft_printf("Error: texture failed\n");
 	a->n.addr = mlx_get_data_addr(a->n.img, &a->n.bpp, &a->n.ll, &a->n.endian);
 	a->s.addr = mlx_get_data_addr(a->s.img, &a->s.bpp, &a->s.ll, &a->s.endian);
 	a->e.addr = mlx_get_data_addr(a->e.img, &a->e.bpp, &a->e.ll, &a->e.endian);
 	a->w.addr = mlx_get_data_addr(a->w.img, &a->w.bpp, &a->w.ll, &a->w.endian);
-	//a->d.addr = mlx_get_data_addr(a->d.img, &a->d.bpp, &a->d.ll, &a->d.endian);
+	a->d.addr = mlx_get_data_addr(a->d.img, &a->d.bpp, &a->d.ll, &a->d.endian);
 }
 
 void	init_game(t_data *a)
