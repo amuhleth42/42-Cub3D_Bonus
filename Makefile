@@ -1,36 +1,68 @@
-NAME		= cub3d
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/21 15:03:47 by amuhleth          #+#    #+#              #
+#    Updated: 2022/11/22 15:00:48 by amuhleth         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-FLAGS		= -Wall -Wextra -Werror -Ofast 
+# ------------------------------------------------------------------------------
+
+NAME		= cub3d
+CC			= gcc
+CFLAGS 		= -Wall -Wextra -Werror -Ofast
+
+# LFTDIR 		= ./libft
+# LIBFT		= $(LFTDIR)/libft.a
+
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS_DIR	= srcs
-OBJS_DIR	= $(shell mkdir -p objs && printf "objs")
-
-SRCS		=	main.c				\
+SRCS_PATH 	= ./srcs/
+SRCS 		= $(addprefix $(SRCS_PATH), $(FILES))
+OBJS		= $(SRCS:.c=.o)
+FILES		+=	main.c				\
 				draw_minimap.c		\
 				draw_column.c		\
 				render_column.c		\
 				exit.c				\
 				keyboard.c			\
-				mouse.c				\
 				move.c				\
 				ray.c				\
 				ray2.c				\
 				render_frame.c		\
+				error.c				\
 				utils.c				\
 				draw_ui.c			\
+				mouse.c				\
 				door.c				\
 
-OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
+FILES		+=  $(addprefix parsing/,	\
+				0_parser_main.c			\
+ 			  	M_parser_map.c			\
+			  	C_parser_color.c		\
+			  	S_parser_sprite.c		\
+ 			  	A_stock_arguments.c		\
+ 			  	M_stock_map.c			\
+ 			  	A_height_calculator.c	\
+ 			  	A_tools_fct.c			\
+ 			  	A_error_manager.c		\
+ 			  	C_checker_color.c		\
+ 			  	S_checker_sprite.c)
 
-all :		$(NAME)
+# =============================================================================
 
-$(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c  cub3d.h
-	gcc $(FLAGS) $(INCL) -c $< -o $@
+all :	$(NAME)
+
+%.o :	%.c
+	$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
 $(NAME) :	libft.a libmlx.a $(OBJS)
-	gcc $(FLAGS) $(INCL) $(LIB) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCL) $(LIB) $(OBJS) -o $(NAME)
 
 libft.a :
 	make -C ./libft
@@ -38,14 +70,16 @@ libft.a :
 libmlx.a :
 	make -C ./mlx
 
-clean :
+sclean :
+	rm -rf $(OBJS)
+
+clean : sclean
 	make fclean -C ./libft
 	make clean -C ./mlx
-	rm -rf $(OBJS_DIR)
-	rm $(NAME)
 
-fclean :	clean
+fclean : clean
+	rm -rf $(NAME)
 
-re :		fclean all
+re : fclean all
 
-.PHONY :	re all clean fclean
+.PHONY: all clean fclean re

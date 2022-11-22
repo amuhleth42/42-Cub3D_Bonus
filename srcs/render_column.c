@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:03:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 01:18:44 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:47:39 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	fix_fisheye(float dist, int i)
 {
 	float	angle;
 
-	angle = add_rad(-PI / 5, i * VIEW_FIELD / (WIN_WIDTH / COLUMN_SIZE));
+	angle = add_rad(-(VIEW_FIELD / 2), i * VIEW_FIELD / (WIN_WIDTH / COLUMN_SIZE));
 	return (dist * cos(angle));
 }
 
