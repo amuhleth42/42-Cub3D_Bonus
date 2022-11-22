@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:38:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 14:58:27 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:23:58 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,19 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 800
+//# define WIN_WIDTH 1280
+//# define WIN_HEIGHT 800
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1200
 
 # define PI 3.1415926535
+# define BSIZE 64
+# define SHIFT 6
 
 # define VIEW_FIELD	(PI / 4)
 # define COLUMN_SIZE 1
 
-# define NB_THREAD 1
+# define NB_THREAD 12
 
 # define      COL_RED        "\033[31;1m"
 # define      COL_RES        "\033[0m"
@@ -79,8 +83,8 @@ typedef struct s_ray
 	int		offset;
 	float	size;
 	float	step;
-	float	tx;
-	float	ty;
+	float		tx;
+	float		ty;
 	float	tyoff;
 	float	value;
 	int		i;

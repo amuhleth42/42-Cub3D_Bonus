@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:36:13 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 16:46:10 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:11:52 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	set_horizontal_start(t_data *a, t_ray *r, float ra)
 {
 	if (ra > PI)
 	{
-		r->y = (((int)a->cam.y >> 6) << 6) - 0.01;
+		r->y = (((int)a->cam.y >> SHIFT) << SHIFT) - 0.01;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
-		r->yoff = -64;
+		r->yoff = -BSIZE;
 		r->xoff = -r->yoff * (-1 / tan(ra));
 	}
 	else if (ra < PI)
 	{
-		r->y = (((int)a->cam.y >> 6) << 6) + 64;
+		r->y = (((int)a->cam.y >> SHIFT) << SHIFT) + BSIZE;
 		r->x = (a->cam.y - r->y) * (-1 / tan(ra)) + a->cam.x;
-		r->yoff = 64;
+		r->yoff = BSIZE;
 		r->xoff = -r->yoff * (-1 / tan(ra));
 	}
 	else
@@ -39,16 +39,16 @@ void	set_vertical_start(t_data *a, t_ray *r, float ra)
 {
 	if (PI / 2 < ra && ra < 3 * PI / 2)
 	{
-		r->x = (((int)a->cam.x >> 6) << 6) - 0.01;
+		r->x = (((int)a->cam.x >> SHIFT) << SHIFT) - 0.01;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
-		r->xoff = -64;
+		r->xoff = -BSIZE;
 		r->yoff = -r->xoff * -tan(ra);
 	}
 	else if (3 * PI / 2 < ra || ra < PI / 2)
 	{
-		r->x = (((int)a->cam.x >> 6) << 6) + 64;
+		r->x = (((int)a->cam.x >> SHIFT) << SHIFT) + BSIZE;
 		r->y = (a->cam.x - r->x) * -tan(ra) + a->cam.y;
-		r->xoff = 64;
+		r->xoff = BSIZE;
 		r->yoff = -r->xoff * -tan(ra);
 	}
 	else
@@ -63,8 +63,8 @@ int	hit_door(t_data *a, t_ray *r)
 	int	x;
 	int	y;
 
-	x = ((int)r->x) >> 6;
-	y = ((int)r->y) >> 6;
+	x = ((int)r->x) >> SHIFT;
+	y = ((int)r->y) >> SHIFT;
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y
 		&& a->map.map[y][x] == 'C')
 	{
@@ -81,8 +81,8 @@ int	hit_wall(t_data *a, t_ray *r)
 	int	x;
 	int	y;
 
-	x = ((int)r->x) >> 6;
-	y = ((int)r->y) >> 6;
+	x = ((int)r->x) >> SHIFT;
+	y = ((int)r->y) >> SHIFT;
 	if (0 <= x && x < a->map.x && 0 <= y && y < a->map.y
 		&& a->map.map[y][x] == '1')
 		return (1);
@@ -106,10 +106,7 @@ void	horizontal_check(t_data *a, t_ray *r, float ra)
 		r->y += r->yoff;
 		i++;
 	}
-	//printf("x:%f, y:%f\n", r->x, r->y);
 	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
-	//if (r->door)
-	//	r->dist += 32;
 	r->value = r->x;
 }
 
@@ -131,7 +128,5 @@ void	vertical_check(t_data *a, t_ray *r, float ra)
 		i++;
 	}
 	r->dist = dist(a->cam.x, a->cam.y, r->x, r->y);
-	//if (r->door)
-		//r->dist += 32;
 	r->value = r->y;
 }

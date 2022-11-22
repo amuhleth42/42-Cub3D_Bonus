@@ -6,7 +6,7 @@
 /*   By: kdi-noce <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:17:58 by kdi-noce          #+#    #+#             */
-/*   Updated: 2022/11/22 16:08:59 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:08:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	parse_player(char c, int y, int x, t_cam *cam)
 {
 	if (!ft_strchr("NSWE", c))
 		return (1);
-	cam->x = (x + 0.5) * 64;
-	cam->y = (y + 0.5) * 64;
+	cam->x = (x + 0.5) * BSIZE;
+	cam->y = (y + 0.5) * BSIZE;
 	if (c == 'E')
 		cam->a = 0;
 	else if (c == 'S')

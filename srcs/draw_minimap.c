@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:37:56 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/16 16:05:46 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:14:48 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	draw_cam(t_data *a)
 	{
 		j = 0;
 		while (j++ < a->cam.size)
-			put_pixel(&a->mini, j - 1 + a->cam.x / 64 * a->map.size,
-				i + a->cam.y / 64 * a->map.size, a->cam.color);
+			put_pixel(&a->mini, j - 1 + a->cam.x / BSIZE * a->map.size,
+				i + a->cam.y / BSIZE * a->map.size, a->cam.color);
 		i++;
 	}
 	i = 0;
@@ -55,8 +55,8 @@ void	draw_cam(t_data *a)
 		j = 0;
 		while (j < a->cam.size - 2)
 		{
-			put_pixel(&a->mini, j + a->cam.x / 64 * a->map.size + a->cam.dx * 5,
-				i + a->cam.y / 64 * a->map.size + a->cam.dy * 5, a->cam.color);
+			put_pixel(&a->mini, j + a->cam.x / BSIZE * a->map.size + a->cam.dx * 5,
+				i + a->cam.y / BSIZE * a->map.size + a->cam.dy * 5, a->cam.color);
 			j++;
 		}
 		i++;
@@ -75,13 +75,11 @@ void	draw_map(t_data *a)
 		while (a->map.map[i][j] != '\0')
 		{
 			if (a->map.map[i][j] == '1')
-			{
 				draw_tile(a, j * a->map.size, i * a->map.size, 0x22FFFFFF);
-			}
-			if (a->map.map[i][j] == '0')
-			{
+			if (a->map.map[i][j] == 'C')
+				draw_tile(a, j * a->map.size, i * a->map.size, 0xFF0000);
+			if (a->map.map[i][j] == '0' || a->map.map[i][j] == 'O')
 				draw_tile(a, j * a->map.size, i * a->map.size, 0x99000000);
-			}
 			j++;
 		}
 		i++;
@@ -91,8 +89,8 @@ void	draw_map(t_data *a)
 
 void	draw_point(t_data *a, int x, int y)
 {
-	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size, y / 64 * a->map.size + 1, 0xFF0000);
-	put_pixel(&a->mini, x / 64 * a->map.size + 1, y / 64 * a->map.size + 1, 0xFF0000);
+	put_pixel(&a->mini, x / BSIZE * a->map.size, y / BSIZE * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / BSIZE * a->map.size + 1, y / BSIZE * a->map.size, 0xFF0000);
+	put_pixel(&a->mini, x / BSIZE * a->map.size, y / BSIZE * a->map.size + 1, 0xFF0000);
+	put_pixel(&a->mini, x / BSIZE * a->map.size + 1, y / BSIZE * a->map.size + 1, 0xFF0000);
 }

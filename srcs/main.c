@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:39:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/11/22 16:40:57 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:19:49 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	init_mlx_hooks(t_data *a)
 
 void	init_map(t_data *a)
 {
-	//a->map.floor = 0xAAAAAA;
-	//a->map.ceiling = 0x666666;
 	a->map.border = 1;
 	if (a->map.x <= 10 && a->map.y <= 16)
 		a->map.size = 20;
@@ -69,7 +67,7 @@ void	init_textures(t_data *a)
 	init_tile(&a->s, a->sprite.so, a->mlx);
 	init_tile(&a->e, a->sprite.ea, a->mlx);
 	init_tile(&a->w, a->sprite.we, a->mlx);
-	init_tile(&a->d, "assets/wolf3d/eagle.XPM", a->mlx);
+	init_tile(&a->d, "assets/wolf3d/wood.XPM", a->mlx);
 	if (!a->n.img || !a->s.img || !a->e.img || !a->w.img)
 		ft_printf("Error: texture failed\n");
 	a->n.addr = mlx_get_data_addr(a->n.img, &a->n.bpp, &a->n.ll, &a->n.endian);
@@ -81,9 +79,6 @@ void	init_textures(t_data *a)
 
 void	init_game(t_data *a)
 {
-	//a->cam.x = 170.0;
-	//a->cam.y = 170.0;
-	//a->cam.a = 0.0;
 	a->cam.dx = cos(a->cam.a);
 	a->cam.dy = sin(a->cam.a);
 	a->cam.size = 4;
@@ -99,7 +94,6 @@ void	init_threads(t_data *a)
 	a->thread = ft_calloc(NB_THREAD + 1, sizeof(t_thread));
 	if (!a->thread)
 		exit_all(a);
-	//ft_printf("thread init done\n");
 }
 
 int	main(int argc, char **argv)
